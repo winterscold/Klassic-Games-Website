@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Klassic Games</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic">
+    <link rel="stylesheet" type="text/css" href="/styles/retro.css">
+    <style>
+        #topBar {
+            background-color: red;
+        }
+
+        #BottomBar {
+            z-index: 100; 
+            bottom: 0; 
+            left: 0;
+            width: 100%;
+        }
+
+        .Jumbotron {
+            margin: auto;
+            text-align: center;
+            padding-bottom: 25px;
+        }
+
+        #TetrisImage {
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-default">
+        <div id= "TopBar" class="container">
+            <div class="navbar-header">
+                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-nav-demo" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+                <a href="/" class="navbar-brand">Klassic Games</a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-nav-demo">
+                <ul class="nav navbar-nav">
+                    <li><a href="about">About</a></li>
+                    <li><a href="tetris">Tetris</a></li>
+                    <li><a href="pacman">Pacman</a></li>
+                    <li><a href="snake">Snake</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="register">Sign Up <i class="fa fa-user-plus"></i></a></li>
+                    <li><a href="login">Login <i class="fa fa-user"></i></a></li>
+                    <li><a href="logout">Logout <i class="fa fa-sign-out"></i></a></li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class = "container" id = "main">
+        <div class = "Jumbotron"> 
+            Play three of the greatest classic games ever made: Tetris, Snake and Pacman.
+        </div>
+      
+        <div class="row">
+            <div class="col-sm-4 col-lg-4">
+                <a href="tetris" class="thumbnail">
+                    <img src="ClassicImages/Tetris.png">
+                </a>
+            </div>
+
+             <div class="col-sm-4 col-lg-4">
+                <a href="pacman" class="thumbnail">
+                    <img src="ClassicImages/Pacman.jpg">
+                </a>
+            </div>
+
+             <div class="col-sm-4 col-lg-4">
+                <a href="snake" class="thumbnail">
+                    <img src="ClassicImages/Snake.png">
+                </a>
+            </div>
+        </div>
+    </div>
+
+      <!--   <div class = "Jumbotron"> Tetris </div>
+        <p style="text-align:center;">
+            <img src="ClassicImages/Tetris.png" height="400" width="400" align="middle">
+        </p>
+        
+        <div class = "Jumbotron"> Pacman </div>
+        <p style="text-align:center;">
+            <img src="ClassicImages/Pacman.jpg" height="300" width="400" align="middle">
+        </p>
+
+        <div class = "Jumbotron"> Snake </div>
+        <p style="text-align:center;">
+            <img src="ClassicImages/Snake.png" height="300" width="400" align="middle">
+        </p> -->
+       <!--  These games are Tetris, Pacman and Snake.
+        div
+        Signup and Login to record your scores. 
+        Will you be one of the greatest players ever? -->
+
+    <script src="https://code.jquery.com/jquery-2.1.4.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</body>
+</html>
+

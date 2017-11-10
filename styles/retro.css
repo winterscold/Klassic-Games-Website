@@ -1,0 +1,20 @@
+#topBar {
+    background-color: red;
+}
+
+#BottomBar {
+    z-index: 100; 
+    bottom: 0; 
+    left: 0;
+    width: 100%;
+}
+
+.Jumbotron {
+    margin: auto;
+    text-align: center;
+    padding-bottom: 25px;
+}
+
+#TetrisImage {
+    margin: auto;
+}
