@@ -219,6 +219,6 @@ function isLoggedIn(req, res, next) {
 };
 
 
-app.use(serveStatic(__dirname)).listen(8080, function(){
+app.use(serveStatic(__dirname)).listen(process.env.PORT || 8080, function(){
     console.log('Classic Games Server running on 8080...');
 });
