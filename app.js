@@ -9,7 +9,8 @@ var express         = require("express"),
     path            = require('path'),
     app             = express();
 
-mongoose.connect("mongodb://localhost/Classic_Games_Database");
+//mongoose.connect("mongodb://localhost/Classic_Games_Database");
+mongoose.connect("mongodb://shaq:john@ds257485.mlab.com:57485/klassicgames");
 
 //app.use(bodyParser.json()); 
 app.use(bodyParser.urlencoded({extended: true}));
