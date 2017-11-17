@@ -1,0 +1,125 @@
+<% include ./partials/headerone %>
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 50%;
+            margin: auto;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 4px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+        h3 {
+          text-align: center;
+        }
+    </style>
+</head>
+<% include partials/headertwo %>
+    
+    <div>
+        <h3> Tetris High Scores </h3>
+        <div id="tetrisScoreTables">   </div>
+    </div>
+    <br> <br>
+    <div>
+        <h3> Pacman High Scores </h3>
+        <div id="pacmanScoreTables"> </div>
+    </div>
+    <br> <br>
+    <div>
+        <h3> Snake High Scores </h3>
+        <div id="snakeScoreTables"> </div>
+    </div>
+    <br> <br>
+
+    <script type="text/javascript">     
+        // var json = (tetrisArrays) %>;
+
+        // var parsed = JSON.parse((json);
+
+        // var arr = [];
+
+        // for(var x in parsed){
+        //   arr.push(parsed[x]);
+        // }
+
+        var tetrisScores = <%- tetrisArrays %>;
+        var pacmanScores = <%- pacmanArrays %>;
+        var snakeScores = <%- snakeArrays %>;
+
+        function sortHighScores(highScoreArray) {
+            var x, y, temp;
+            for (var i = 0; i < highScoreArray.length-1; i++) {
+                for (var j = i+1; j < highScoreArray.length; j++) {
+                    x = highScoreArray[i].score;
+                    y = highScoreArray[j].score;
+                    if (y > x) {
+                        temp = highScoreArray[i];
+                        highScoreArray[i] = highScoreArray[j];
+                        highScoreArray[j] = temp;
+                    }
+                }
+            }
+        return highScoreArray;
+        };
+
+        var $id1 = 'tetrisScoreTables', $id2 = 'pacmanScoreTables', $id3 = 'snakeScoreTables';
+        console.log(tetrisScores);
+        console.log(pacmanScores);
+        console.log(snakeScores);
+
+        //ensure that arrays are sorted in descending order
+        tetrisScores = sortHighScores(tetrisScores);
+        pacmanScores = sortHighScores(pacmanScores);
+        snakeScores = sortHighScores(snakeScores);
+        
+        function printArrays(tetrisScores, pacmanScores, snakeScores) {        
+
+            for (var $j=0; $j < 3; $j++) {
+                var currentArray, currentId;
+                var html = '<table cellpadding="1"><tr><th>Rank</th><th>User</th><th>Score</th></tr>' + "\n";
+                if ($j === 0) {
+                    currentArray = tetrisScores;
+                    currentId = $id1;
+                }
+                else if ($j === 1) {
+                    currentArray = pacmanScores;
+                    currentId = $id2;
+                } 
+                else {
+                    currentArray = snakeScores;
+                    currentId = $id3;
+                }
+                if (currentArray.length === 0) {
+                    continue;
+                }
+        
+                for (var $i=0; $i<currentArray.length; $i++) {
+                  if ($i > 10) {
+                    break;
+                  }
+                  html += '<tr>';
+                  var $rank    = ($i + 1) + ".";
+                  var $user    = currentArray[$i].username;
+                  var $score  = currentArray[$i].score;
+                  html += '<td width="10">' + $rank + '</td>' + "\n";
+                  html += '<td width="10">' + $user + '</td>' + "\n";
+                  html += '<td width="10">' + $score + '</td>' + "\n";
+                  html += '</tr>';
+                }                
+                html += '</table>' + "\n" + "\n"+ "\n"+ "\n";           
+                document.getElementById(currentId).innerHTML = html;
+            }
+        };
+
+        window.onload = printArrays(tetrisScores, pacmanScores, snakeScores);
+    </script>
+
+<% include ./partials/footer %>

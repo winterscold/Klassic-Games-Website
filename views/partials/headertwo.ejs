@@ -1,0 +1,36 @@
+<body>
+    <nav class="navbar navbar-default">
+        <div id= "TopBar" class="container">
+            <div class="navbar-header">
+                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-nav-demo" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+                <a href="/" class="navbar-brand">Klassic Games</a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-nav-demo">
+                <ul class="nav navbar-nav">
+                    <li><a href="tetris">Tetris</a></li>
+                    <li><a href="pacman">Pacman</a></li>
+                    <li><a href="snake">Snake</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                 <% if (currentUser) { %>
+                    <li><a href="scores">Scores </a></li>
+                 <% } %>
+                    <li><a href="highscores">High Scores </a></li>
+                 <% if (!currentUser) { %>
+                        <li><a href="register">Sign Up <i class="fa fa-user-plus"></i></a></li>
+                        <li><a href="login">Login <i class="fa fa-user"></i></a></li>
+
+                 <% } else { %>
+                        <li><a href="#">Logged in as <%= currentUser.username %> </a></li>
+                        <li><a href="logout">Logout <i class="fa fa-sign-out"></i></a></li>
+                 <% } %>
+
+                </ul>
+            </div>
+        </div>
+    </nav>

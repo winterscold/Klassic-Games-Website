@@ -49,7 +49,7 @@ var timerDelay = 80;
 var speed = 5;
 var score = 0;
 var lives = [];
-var MAX_LIFE = 3;
+var MAX_LIFE = 0;
 var life = MAX_LIFE;
 var weakBonus = 200;
 var MAX_BEANS = 136;
@@ -796,10 +796,10 @@ function countDown () {
                 ctx.fillText("GO",CANVAS_HEIGHT-43, 130);
                 setTimeout(function  () {
                     intervalId = setInterval(updateCanvas, timerDelay);
-                },500);
-            }, 1000);
-        }, 1000);   
-    }, 1000);
+                },50);
+            }, 100);
+        }, 100);   
+    }, 100);
 }
 /*==================END UI Update Methods================*/
 

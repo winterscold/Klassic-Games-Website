@@ -1,41 +1,7 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Javascript Tetris</title>
-  <link rel="stylesheet" type="text/css" href="/styles/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic">
+<% include ../partials/headerone %>
   <link rel="stylesheet" type="text/css" href="/styles/tetris.css">
-  <script src="https://code.jquery.com/jquery-2.1.4.js"></script>
-
 </head>
-
-<body>
-  <nav class="navbar navbar-default">
-        <div id= "TopBar" class="container">
-            <div class="navbar-header">
-                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-nav-demo" aria-expanded="false">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-                <a href="/" class="navbar-brand">Classic Games</a>
-            </div>
-            <div class="collapse navbar-collapse" id="bs-nav-demo">
-                <ul class="nav navbar-nav">
-                    <li><a href="about">About</a></li>
-                    <li><a href="tetris">Tetris</a></li>
-                    <li><a href="pacman">Pacman</a></li>
-                    <li><a href="snake">Snake</a></li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="register">Sign Up<i class="fa fa-user-plus"></i></a></li>
-                    <li><a href="login">Login<i class="fa fa-user"></i></a></li>
-                </ul>
-            </div>
-        </div>
-  </nav>
+<% include ../partials/headertwo %>
   <div id="tetris">
     <div id="menu">
       <p id="start"><a href="javascript:play();">Press Space to Play.</a></p>
@@ -56,7 +22,7 @@
   <script src="/scripts/stats.js"></script>
   <script>
     //-------------------------------------------------------------------------
-    // base helper methods
+    // base helper methods`
     //-------------------------------------------------------------------------
     function get(id)        { return document.getElementById(id);  }
     function hide(id)       { get(id).style.visibility = 'hidden'; }
@@ -430,6 +396,9 @@
     }
     /* attach a submit handler to the form */
     $("#saveForm").submit(function(event) {
+        <% if (!currentUser) { %>
+                break;
+        <% } %>
 
         /* stop form from submitting normally */
         event.preventDefault();
@@ -448,5 +417,4 @@
     });
   </script>
 
-</body>
-</html>
+<% include ../partials/footer %>

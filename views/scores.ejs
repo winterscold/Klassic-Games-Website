@@ -1,0 +1,133 @@
+<% include ./partials/headerone %>
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 50%;
+            margin: auto;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 4px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+        h3 {
+          text-align: center;
+        }
+    </style>
+</head>
+<% include partials/headertwo %>
+    
+    <div>
+        <h3> Tetris Scores </h3>
+        <div id="tetrisScoreTables">   </div>
+    </div>
+    <br> <br>
+    <div>
+        <h3> Pacman Scores </h3>
+        <div id="pacmanScoreTables"> </div>
+    </div>
+    <br> <br>
+    <div>
+        <h3> Snake Scores </h3>
+        <div id="snakeScoreTables"> </div>
+    </div>
+    <br> <br>
+
+    <script type="text/javascript">
+        var tetrisScores = <%= tetrisArrays %>;
+        var pacmanScores = <%= pacmanArrays %>;
+        var snakeScores = <%= snakeArrays %>;
+
+        var $id1 = 'tetrisScoreTables', $id2 = 'pacmanScoreTables', $id3 = 'snakeScoreTables';
+        tetrisScores.sort(function(a, b){return b-a});
+        pacmanScores.sort(function(a, b){return b-a});
+        snakeScores.sort(function(a, b){return b-a});
+        console.log(tetrisScores);
+        console.log(pacmanScores);
+        console.log(snakeScores);
+        
+        function printArrays(tetrisScores, pacmanScores, snakeScores) {        
+
+            for (var $j=0; $j < 3; $j++) {
+                var currentArray, currentId;
+                var html = '<table cellpadding="1"><tr><th>Rank</th><th>Score</th></tr>' + "\n";
+                if ($j === 0) {
+                    currentArray = tetrisScores;
+                    currentId = $id1;
+                }
+                else if ($j === 1) {
+                    currentArray = pacmanScores;
+                    currentId = $id2;
+                } 
+                else {
+                    currentArray = snakeScores;
+                    currentId = $id3;
+                }
+                if (currentArray.length === 0) {
+                    continue;
+                }
+                
+                for (var $i=0; $i<currentArray.length; $i++) {
+                  if ($i > 10) {
+                    break;
+                  }
+                  html += '<tr>';
+                  var $rank    = ($i + 1) + ".";
+                  var $score  = currentArray[$i];
+                  html += '<td width="10">' + $rank + '</td>' + "\n"
+                  html += '<td width="10">' + $score + '</td>' + "\n";
+                  html += '</tr>';
+                }                
+                html += '</table>' + "\n" + "\n"+ "\n"+ "\n";           
+                document.getElementById(currentId).innerHTML = html;
+            }
+        };
+
+        window.onload = printArrays(tetrisScores, pacmanScores, snakeScores);
+    </script>
+
+ <!--    var $menu_tags = [
+          {slug: 'menu_allergen_milk',    name: 'Milk'},
+          {slug: 'menu_allergen_peanut',    name: 'Peanuts'},
+          {slug: 'menu_allergen_sulphites', name: 'Sulphur dioxide'},
+          {slug: 'menu_allergen_celery',    name: 'Celery'},
+          {slug: 'menu_allergen_seafood',   name: 'Seafood'},
+          {slug: 'menu_allergen_mustard',   name: 'Mustard'}
+        ];  -->
+   <!--  function printArrayInTabularFormat(menuTags, colCount) {
+            var html = '<table name="tblMenuAllergens" cellpadding="1" border="1"><thead></thead><tbody>' + "\n";
+
+            var cellIndex=1;
+            for (var $i=0; $i<menuTags.length; $i++) {
+              if (cellIndex == 1) {
+                html += '<tr>';
+              }
+              var $id    = menuTags[$i]['slug'];
+              var $name  = menuTags[$i]['name'];
+              html += '<td width="120">' + $name + '</td>' + "\n";
+              if (++cellIndex > colCount) { //close the row
+                html += '</tr>';
+                cellIndex = 1;
+              }
+            }
+            //finish empty cells
+            var remainingCellsCount = menuTags.length % colCount;
+            if (remainingCellsCount) {
+              for (var $i=0; $i<remainingCellsCount; $i++) {
+                html += '<td width="120"> </td>' + "\n";
+              }
+              html += '</tr>';
+            }
+            html += '</tbody></table>' + "\n";
+            html += '</td></tr></tbody></table>' + "\n";
+       
+            document.getElementById('allergensTable').innerHTML = html;
+        }($menu_tags, MENU_TAGS_COLUMN_COUNT); -->
+
+<% include ./partials/footer %>

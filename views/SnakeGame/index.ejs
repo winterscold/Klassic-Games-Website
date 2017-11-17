@@ -1,0 +1,60 @@
+<% include ../partials/headerone %>
+    <link rel=stylesheet id=style type=text/css href=/styles/main-snake.css />
+</head>
+<% include ../partials/headertwo %>
+    <div id="mode-wrapper">
+        <div id = "button-wrapper">
+                Select which mode you would like to play in.
+                <br />
+                <button id="Easy">Easy</button>
+                <button id="Medium">Medium</button>
+                <button id="Difficult">Difficult</button>
+        </div>
+    </div>
+    <!--<button id="high-score">Get your current high score for this game.</button>-->
+    <div id="game-area" tabindex="0">
+    </div>
+    <form id="saveForm" action="/snakesave" method="POST">
+        <input id="scoreButton" type="hidden" name="savedScore">
+        <input id="saveButton" type="submit" value="Save Score?" style="z-index:2; position:absolute; top:280px; left:697px; display:none" onclick="this.style.display = 'none';" class="btn btn-primary btn-lg"/>
+    </form>
+    <script type="text/javascript" src="/scripts/snake.js"></script>
+    <script type="text/javascript">
+        var mySnakeBoard = new SNAKE.Board(  {
+               boardContainer: "game-area",
+               fullScreen: true
+        });    
+    </script>
+    <script type="text/javascript">
+        function tempAlert(msg,duration)    {
+            var el = document.createElement("div");
+            el.setAttribute("style","position:absolute;top:30%;left:47%;background-color:white;");
+            el.innerHTML = msg;
+            setTimeout(function(){
+                el.parentNode.removeChild(el);
+            }, duration);
+            document.body.appendChild(el);
+        }
+        /* attach a submit handler to the form */
+        $("#saveForm").submit(function(event) {
+            <% if (!currentUser) { %>
+                break;
+            <% } %>
+            
+            /* stop form from submitting normally */
+            event.preventDefault();
+
+            /* get the action attribute from the <form action=""> element */
+            var $form = $( this ),
+              url = $form.attr( 'action' );
+
+            /* Send the data using post with element id name and name2*/
+            var posting = $.post( url, { score: $('#scoreButton').val() } );
+
+            /* Alerts the results */
+            posting.done(function( data ) {
+                tempAlert(" Score Saved! ", 2500);
+            });
+        });
+    </script>    
+<% include ../partials/footer %>
