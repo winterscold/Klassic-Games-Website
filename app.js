@@ -10,8 +10,8 @@ var express         = require("express"),
     path            = require('path'),
     app             = express();
 
-mongoose.connect("mongodb://localhost/Classic_Games_Database");
-//mongoose.connect("mongodb://shaq:john@ds257485.mlab.com:57485/klassicgames");
+//mongoose.connect("mongodb://localhost/Classic_Games_Database");
+mongoose.connect("mongodb://shaq:john@ds257485.mlab.com:57485/klassicgames");
 
 //app.use(bodyParser.json()); 
 app.use(bodyParser.urlencoded({extended: true}));
@@ -37,23 +37,6 @@ passport.deserializeUser(User.deserializeUser());
 
 app.use(function(req, res, next){
    res.locals.currentUser = req.user;
-   // if (req.user) {
-   //   console.log("user is logged in");
-   //   User.findOne({username: req.user}, function(err, foundUser) {
-   //      if (err) {
-   //          console.log(err);
-   //      }
-   //      else {
-   //          console.log("found user in database");
-   //          res.locals.tetrisArrays = foundUser.tetrisArrays;
-   //          console.log(foundUser.tetrisArrays);
-   //          res.locals.pacmanArrays = foundUser.pacmanArrays;
-   //          res.locals.snakeArrays = foundUser.snakeArrays;
-   //      }
-   //  });
-   // }
-   //res.locals.error = req.flash("error");
-   //res.locals.success = req.flash("success");
    next();
 });
 
