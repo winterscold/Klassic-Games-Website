@@ -10,8 +10,8 @@ var express         = require("express"),
     path            = require('path'),
     app             = express();
 
-//mongoose.connect("mongodb://localhost/Classic_Games_Database");
-mongoose.connect("mongodb://shaq:john@ds257485.mlab.com:57485/klassicgames");
+mongoose.connect("mongodb://localhost/Classic_Games_Database");
+//mongoose.connect("mongodb://shaq:john@ds257485.mlab.com:57485/klassicgames");
 
 //app.use(bodyParser.json()); 
 app.use(bodyParser.urlencoded({extended: true}));
@@ -20,7 +20,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.use("/scripts", express.static(__dirname + "/scripts"));
 app.use("/styles", express.static(__dirname + "/styles"));
-//app.use(flash());
+app.use(flash());
 
 app.use(require("express-session")({
     secret: "Abracadabra, alakazam",
@@ -37,6 +37,8 @@ passport.deserializeUser(User.deserializeUser());
 
 app.use(function(req, res, next){
    res.locals.currentUser = req.user;
+   res.locals.error = req.flash("error");
+   res.locals.success = req.flash("success");
    next();
 });
 
@@ -81,19 +83,20 @@ app.post("/register", function(req, res){
     });
     User.register(newUser, req.body.password, function(err, user){
         if(err){
-          //  req.flash("error", err.message);
             console.log(err);
+            req.flash("error", err.message);
             return res.render("register.ejs");
         }
         passport.authenticate("local")(req, res, function(){
-          // req.flash("success", "Welcome to Classic Games" + user.username);
-           res.redirect("/"); 
+            req.flash("success", "Welcome to Klassic Games " + user.username);
+            res.redirect("/"); 
         });
     });
 });
 
 app.get("/logout", function(req, res){
     req.logout();
+    req.flash("success", "Logged you out");
     res.redirect("/");
 })
 
@@ -259,7 +262,8 @@ function isLoggedIn(req, res, next) {
     if (req.isAuthenticated()){
         return next();
     }
-    res.render("login.ejs");
+    req.flash("error", "Please login to save score");
+    res.redirect("login");
 };
 
 function sortHighScores(highScoreArray) {
